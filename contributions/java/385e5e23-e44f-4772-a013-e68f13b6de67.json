@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "id": "385e5e23-e44f-4772-a013-e68f13b6de67",
+  "kind": "java",
+  "source": {
+    "java": "17"
+  },
+  "target": {
+    "java": "25"
+  },
+  "entries": [
+    {
+      "applicability": "Java 17 to 25; callers relying on the default List contract.",
+      "category": "api",
+      "compat": "Keeping get(0) also avoids introducing a method absent from the Java 17 List interface.",
+      "evidence": [
+        {
+          "locator": "List.get(int), Throws",
+          "source": "https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html#get(int)",
+          "supports": "An index outside the list bounds throws IndexOutOfBoundsException, including index zero on an empty list."
+        },
+        {
+          "locator": "List.getFirst(), Implementation Requirements, Throws and Since",
+          "source": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/List.html#getFirst()",
+          "supports": "The default implementation throws NoSuchElementException when empty; the method was added in Java 21."
+        }
+      ],
+      "id": "java.list.first.empty-exception",
+      "migration": "Retain get(0) when preserving its empty-list exception is required; inspect caller handling before adopting getFirst().",
+      "summary": "JDK 25 List.getFirst() and JDK 17 List.get(0) differ for empty lists.",
+      "verification": "Official API documentation checked; custom List implementations and project runtime behavior remain unverified."
+    }
+  ]
+}
