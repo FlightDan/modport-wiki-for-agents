@@ -1,4 +1,1 @@
-{
-  "schema_version": 1,
-  "entries": []
-}
+{"entries":[{"id":"385e5e23-e44f-4772-a013-e68f13b6de67","kind":"java","path":"contributions/java/385e5e23-e44f-4772-a013-e68f13b6de67.json","source":{"java":"17"},"target":{"java":"25"}}],"schema_version":1}
